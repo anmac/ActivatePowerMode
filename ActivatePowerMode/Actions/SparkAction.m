@@ -84,6 +84,7 @@ NSInteger const MaxParticleCount = 100;
             particle.velocity.x,
             particle.velocity.y + 0.175
         };
+    
         
         particle.position = (CGPoint){
             particle.position.x + particle.velocity.x,

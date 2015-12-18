@@ -44,9 +44,9 @@
     
     [[SparkAction sharedAction] sparkAtPosition:position withColor:color inView:textView];
     
-    [ShakeAction shakeView:textView];
+//    [ShakeAction shakeView:textView];
     
-    [[APMPlayer defaultPlayer] playSound];
+//    [[APMPlayer defaultPlayer] playSound];
     
     return [self hook_textView:textView shouldChangeTextInRange:affectedCharRange replacementString:replacementString];
 }
