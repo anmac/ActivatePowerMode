@@ -77,8 +77,31 @@ NSInteger const MaxParticleCount = 500;
     } else {
         [self.timer invalidate];
     }
-    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            12345667
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 

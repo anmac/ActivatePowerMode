@@ -4,7 +4,7 @@
 
   An idea from [activate-power-mode](https://github.com/JoelBesada/activate-power-mode).
 
-  ![image](https://github.com/poboke/ActivatePowerMode/raw/master/Screenshots/about.gif)
+  ![image](https://github.com/poboke/ActivatePowerMode/raw/master/Screenshots/BigGif.gif)
 
 ## Effect Switch
 
