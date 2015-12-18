@@ -37,7 +37,6 @@ CGFloat const ParticleWidth = 3.0;
     self.frame = (CGRect){position, self.frame.size};
 }
 
-
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];

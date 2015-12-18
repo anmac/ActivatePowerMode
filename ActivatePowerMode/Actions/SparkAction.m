@@ -9,7 +9,7 @@
 #import "SparkAction.h"
 #import "ParticleView.h"
 
-NSInteger const MaxParticleCount = 100;
+NSInteger const MaxParticleCount = 500;
 
 @interface SparkAction ()
 
@@ -51,20 +51,34 @@ NSInteger const MaxParticleCount = 100;
 
 - (void)sparkAtPosition:(CGPoint)position withColor:(NSColor *)color inView:(NSView *)view
 {
+    //清空之前的效果(内存不够用了..)
+    [self.particleDictionary.allValues makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.particleDictionary removeAllObjects];
+    [self.timer invalidate];
+
     if (![ConfigManager sharedManager].isEnableSpark) {
         return;
     }
+    NSInteger number = 5 + RandomRange(0, 100);
     
-    NSInteger number = 5 + RandomRange(0, 5);
-    
-    for (NSInteger i = 0; i < number; i++) {
+    for (NSInteger i = 0; i < number; i++)
+    {
         ParticleView *particle = [[ParticleView alloc] initWithPosition:position color:color];
         [view addSubview:particle];
         
-        self.particleIndex = (self.particleIndex + 1) % MaxParticleCount;
+         self.particleIndex = (self.particleIndex + 1) % MaxParticleCount;
         [self.particleDictionary[@(self.particleIndex)] removeFromSuperview];
-        self.particleDictionary[@(self.particleIndex)] = particle;
+         self.particleDictionary[@(self.particleIndex)] = particle;
     }
+
+    if (_enableAction) {
+        [self.timer invalidate];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.025 target:self selector:@selector(update) userInfo:nil repeats:YES];
+    } else {
+        [self.timer invalidate];
+    }
+    
+
 }
 
 
@@ -78,32 +92,43 @@ NSInteger const MaxParticleCount = 100;
             return;
         }
         
-        particle.alpha *= 0.91;
+//        particle.alpha *= 0.91;
+        particle.alpha *= 0.95;
     
-        particle.velocity = (Velocity){
+        particle.velocity = (Velocity){//asdasd
             particle.velocity.x,
             particle.velocity.y + 0.175
         };
-    
+        
         
         particle.position = (CGPoint){
-            particle.position.x + particle.velocity.x,
-            particle.position.y + particle.velocity.y
+            particle.position.x + particle.velocity.x*10,
+            particle.position.y + particle.velocity.y*10
         };
+        
     }];
+    if(self.particleDictionary.count==0)
+    {
+        [self.timer invalidate];
+    }
 }
 
 
 - (void)setEnableAction:(BOOL)enableAction
 {
     _enableAction = enableAction;
-    
-    if (_enableAction) {
-        [self.timer invalidate];
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.025 target:self selector:@selector(update) userInfo:nil repeats:YES];
-    } else {
+    if(!_enableAction)
+    {
         [self.timer invalidate];
     }
+    
+//    if (_enableAction) {
+//        [self.timer invalidate];
+//        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.025 target:self selector:@selector(update) userInfo:nil repeats:YES];
+//    } else {
+//        [self.timer invalidate];
+//    }
 }
+
 
 @end

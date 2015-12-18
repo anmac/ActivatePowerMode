@@ -76,18 +76,26 @@
 - (void)addPluginsMenu
 {
     // Add Plugins menu next to Window menu
-    NSMenu *mainMenu = [NSApp mainMenu];
-    NSMenuItem *pluginsMenuItem = [mainMenu itemWithTitle:@"Plugins"];
-    if (!pluginsMenuItem) {
-        pluginsMenuItem = [[NSMenuItem alloc] init];
-        pluginsMenuItem.title = @"Plugins";
-        pluginsMenuItem.submenu = [[NSMenu alloc] initWithTitle:pluginsMenuItem.title];
-        NSInteger windowIndex = [mainMenu indexOfItemWithTitle:@"Window"];
-        [mainMenu insertItem:pluginsMenuItem atIndex:windowIndex];
-    }
+//    NSMenu *mainMenu = [NSApp mainMenu];
+//    NSMenuItem *pluginsMenuItem = [mainMenu itemWithTitle:@"Plugins"];
+//    if (!pluginsMenuItem) {
+//        pluginsMenuItem = [[NSMenuItem alloc] init];
+//        pluginsMenuItem.title = @"Plugins";
+//        pluginsMenuItem.submenu = [[NSMenu alloc] initWithTitle:pluginsMenuItem.title];
+//        NSInteger windowIndex = [mainMenu indexOfItemWithTitle:@"Window"];
+//        [mainMenu insertItem:pluginsMenuItem atIndex:windowIndex];
+//    }
+//    
+//    NSMenuItem *mainMenuItem = [[MainMenuItem alloc] init];
+//    [pluginsMenuItem.submenu addItem:mainMenuItem];
     
-    NSMenuItem *mainMenuItem = [[MainMenuItem alloc] init];
-    [pluginsMenuItem.submenu addItem:mainMenuItem];
+    NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"View"];
+    if (editMenuItem)
+    {
+        [[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+        NSMenuItem *mainMenuItem = [[MainMenuItem alloc] init];
+        [[editMenuItem submenu] addItem:mainMenuItem];
+    }
 }
 
 

@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
 {
     if (self = [super init]) {
         
-        self.title = [NSString stringWithFormat:@"Activate Power Mode (v%@)", PluginVersion];
+        self.title = [NSString stringWithFormat:@"特效开关 (v%@)", PluginVersion];
         
         NSMenu *configMenu = [[NSMenu alloc] init];
         configMenu.autoenablesItems = NSOffState;
@@ -41,21 +41,21 @@ typedef NS_ENUM(NSUInteger, MenuItemType) {
         
         ConfigManager *configManager = [ConfigManager sharedManager];
         
-        NSMenuItem *pluginMenuItem = [self menuItemWithTitle:@"Enable" type:kMenuItemTypeEnablePlugin];
+        NSMenuItem *pluginMenuItem = [self menuItemWithTitle:@"全部开关" type:kMenuItemTypeEnablePlugin];
         pluginMenuItem.state = configManager.isEnablePlugin;
         [configMenu addItem:pluginMenuItem];
         
-        self.sparkMenuItem = [self menuItemWithTitle:@"Enable Spark  ✨" type:kMenuItemTypeEnableSpark];
+        self.sparkMenuItem = [self menuItemWithTitle:@"特效开关  ✨" type:kMenuItemTypeEnableSpark];
         self.sparkMenuItem.state = configManager.isEnableSpark;
         self.sparkMenuItem.enabled = configManager.isEnablePlugin;
         [configMenu addItem:self.sparkMenuItem];
         
-        self.shakeMenuItem = [self menuItemWithTitle:@"Enable Shake  🗯" type:kMenuItemTypeEnableShake];
+        self.shakeMenuItem = [self menuItemWithTitle:@"震动开关  🗯" type:kMenuItemTypeEnableShake];
         self.shakeMenuItem.state = configManager.isEnableShake;
         self.shakeMenuItem.enabled = configManager.isEnablePlugin;
         [configMenu addItem:self.shakeMenuItem];
         
-        self.soundMenuItem = [self menuItemWithTitle:@"Enable Sound  🎶" type:kMenuItemTypeEnableSound];
+        self.soundMenuItem = [self menuItemWithTitle:@"声音开关  🎶" type:kMenuItemTypeEnableSound];
         self.soundMenuItem.state = configManager.isEnableSound;
         self.soundMenuItem.enabled = configManager.isEnablePlugin;
         [configMenu addItem:self.soundMenuItem];
